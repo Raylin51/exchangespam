@@ -37,14 +37,15 @@ const exec = async () => {
     const connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        database: 'test'
+        password: '',
+        database: 'exchange'
     });
 
     connection.connect();
     connection.query(`CREATE TABLE IF NOT EXISTS data_1 (
         name VARCHAR(255) NOT NULL,
-        rank INT NOT NULL,
-        exchangeScore VARCHAR(255),
+        exchange_rank INT NOT NULL,
+        exchange_score VARCHAR(255),
         volume VARCHAR(255),
         quoteChange VARCHAR(255),
         avgLiquidity VARCHAR(255),
@@ -82,8 +83,8 @@ const exec = async () => {
                             connection.query(`UPDATE current_table SET current_table_id = ${tableID} WHERE id = 1`)
                             connection.query(`CREATE TABLE IF NOT EXISTS data_${tableID} (
                                 name VARCHAR(255) NOT NULL,
-                                rank INT NOT NULL,
-                                exchangeScore VARCHAR(255),
+                                exchange_rank INT NOT NULL,
+                                exchange_score VARCHAR(255),
                                 volume VARCHAR(255),
                                 quoteChange VARCHAR(255),
                                 avgLiquidity VARCHAR(255),
@@ -94,7 +95,7 @@ const exec = async () => {
                             )`)
                         }
                         obj.data.map(item => {
-                            connection.query(`INSERT INTO data_${tableID} (name,rank,exchangeScore,volume,quoteChange,avgLiquidity,visitsSimilarweb,markets,coins,time) VALUES (?,?,?,?,?,?,?,?,?,?)`,
+                            connection.query(`INSERT INTO data_${tableID} (name,exchange_rank,exchange_score,volume,quoteChange,avgLiquidity,visitsSimilarweb,markets,coins,time) VALUES (?,?,?,?,?,?,?,?,?,?)`,
                                 [item.name, item.rank, item.exchangeScore, item.volume, item.quoteChange, item.avgLiquidity, item.visitsSimilarweb, item.markets, Number(item.coins), item.time]
                             )
                         })
