@@ -1,0 +1,10 @@
+{
+  "name": "coinmarket",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "puppeteer": "^5.5.0"
+  }
+}
