@@ -109,4 +109,6 @@ const exec = async () => {
     await browser.close();
 }
 
-setInterval(exec, 3600)
+exec()
+
+setInterval(exec, 3600 * 1000)
